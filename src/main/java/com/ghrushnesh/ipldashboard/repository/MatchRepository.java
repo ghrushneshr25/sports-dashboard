@@ -1,0 +1,20 @@
+package com.ghrushnesh.ipldashboard.repository;
+
+import java.util.List;
+
+import com.ghrushnesh.ipldashboard.model.Match;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.CrudRepository;
+
+public interface MatchRepository extends CrudRepository<Match, Long> {
+
+    List<Match> getByTeam1OrTeam2OrderByDateDesc(String teamName1, String teamName2, Pageable pageable);
+    // Search team1 = teamName1 Or team2 = teamName2
+
+    default List<Match> findLatestMatchesId(String teamName, int count) {
+        return getByTeam1OrTeam2OrderByDateDesc(teamName, teamName, PageRequest.of(0, count));
+    }
+
+}
