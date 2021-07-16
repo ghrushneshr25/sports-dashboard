@@ -4,11 +4,13 @@ import com.ghrushnesh.ipldashboard.model.Team;
 import com.ghrushnesh.ipldashboard.repository.MatchRepository;
 import com.ghrushnesh.ipldashboard.repository.TeamRepository;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin // to call localhost 8080 from 3000
 public class TeamController {
 
     private TeamRepository teamRepository;
